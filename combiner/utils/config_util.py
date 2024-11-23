@@ -1,8 +1,8 @@
 import os
-import yaml
+import json
 
 class ConfigUtil:
-    CONFIG_FILE_NAME = "config.yaml"
+    CONFIG_FILE_NAME = "config.json"
     REQUIRES_REVIEW_KEY = "requires_review"
     DEFAULT_REQUIRES_REVIEW = True
 
@@ -15,8 +15,8 @@ class ConfigUtil:
         
         with open(config_file_path, 'r') as config_file:
             try:
-                config = yaml.safe_load(config_file)
-            except yaml.YAMLError:
+                config = json.load(config_file)
+            except (json.JSONDecodeError, OSError):
                 return ConfigUtil.DEFAULT_REQUIRES_REVIEW
             
         return config.get(ConfigUtil.REQUIRES_REVIEW_KEY, ConfigUtil.DEFAULT_REQUIRES_REVIEW)
