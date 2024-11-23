@@ -24,7 +24,7 @@ class CombineJob:
             study_book_name = Parser.join_paths(study_name, book_name)
             book_path = Parser.join_paths(self.root_dir, study_book_name)
             
-            if ConfigUtil.requires_review(book_path):
+            if ConfigUtil.requires_review(self.root_dir, study_name):
                 reviewer_count = len(Parser.find_all_directories(book_path))
                 all_finished_files = Parser.find_common_files(book_path)
                 self.combiner.combine(all_finished_files, book_path, study_book_name, reviewer_count)
