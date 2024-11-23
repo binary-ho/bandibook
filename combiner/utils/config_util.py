@@ -7,8 +7,8 @@ class ConfigUtil:
     DEFAULT_REQUIRES_REVIEW = True
 
     @staticmethod
-    def requires_review(base_path):
-        config_file_path = os.path.join(base_path, ConfigUtil.CONFIG_FILE_NAME)
+    def requires_review(base_path, *paths):
+        config_file_path = os.path.join(base_path, *paths, ConfigUtil.CONFIG_FILE_NAME)
 
         if not os.path.isfile(config_file_path):
             return ConfigUtil.DEFAULT_REQUIRES_REVIEW 
